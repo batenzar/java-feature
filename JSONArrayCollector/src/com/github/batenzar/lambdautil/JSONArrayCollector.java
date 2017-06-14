@@ -19,7 +19,7 @@ public class JSONArrayCollector<T> implements Collector<T, JSONArray, JSONArray>
 	public Supplier<JSONArray> supplier()
 	{
 		System.out.println("supplier");
-		return (Supplier<JSONArray>)JSONArray::new;
+		return (Supplier<JSONArray>) new JSONArray();
 	}
 
 	/* (non-Javadoc)
@@ -30,7 +30,7 @@ public class JSONArrayCollector<T> implements Collector<T, JSONArray, JSONArray>
 	{
 		System.out.println("accumulator");
 		return (a, b) -> {
-			System.out.println("classa: " + a.getClass().getSimpleName() + " classb: " + b.getClass().getSimpleName());
+			System.out.println("accumulator ==> classa: " + a.getClass().getSimpleName() + " classb: " + b.getClass().getSimpleName());
 			System.out.println("a: " + a + " b: " + b);
 			a.put(b);
 		};
@@ -44,6 +44,7 @@ public class JSONArrayCollector<T> implements Collector<T, JSONArray, JSONArray>
 	{
 		System.out.println("combiner");
 		return (a, b) -> {
+			System.out.println("combiner ==> classa:" + a.getClass().getSimpleName() + " a:" + a + " b:" + b);
 			for (int i = 0; i < b.length(); i++) {
 				a.put(b.get(i));
 			}
@@ -58,7 +59,10 @@ public class JSONArrayCollector<T> implements Collector<T, JSONArray, JSONArray>
 	public Function<JSONArray, JSONArray> finisher()
 	{
 		System.out.println("finisher");
-		return (a) -> a;
+		return (a) -> {
+			System.out.println("finisher ==> classa:" + a.getClass().getSimpleName() + " a'size:" + a.length());
+			return a;
+		};
 	}
 
 	/* (non-Javadoc)

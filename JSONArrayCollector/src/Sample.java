@@ -13,14 +13,27 @@ public class Sample {
 		list.add("A");
 		list.add("B");
 		list.add("C");
+		list.add("D");
+		list.add("E");
 
-		JSONArray collect = list.stream() //
-				.filter(a -> a.equals("B")) //
+		System.out.println("===== Starting Case 01 Stream =====");
+		
+		JSONArray collect1 = list.stream() //
 				.collect(new JSONArrayCollector<String>());
 		
 		System.out.println("Result");
-		for (int i = 0; i <= collect.length(); i++) {
-			System.out.println(collect.get(i));
+		for (int i = 0; i < collect1.length(); i++) {
+			System.out.println(collect1.getString(i));
+		}
+		
+		System.out.println("===== Starting Case 02 Parallel =====");
+		
+		JSONArray collect2 = list.parallelStream() //
+				.collect(new JSONArrayCollector<String>());
+		
+		System.out.println("Result");
+		for (int i = 0; i < collect2.length(); i++) {
+			System.out.println(collect2.getString(i));
 		}
 	}
 }
