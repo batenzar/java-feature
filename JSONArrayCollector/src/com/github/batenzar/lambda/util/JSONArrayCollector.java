@@ -1,4 +1,4 @@
-package com.github.batenzar.lambdautil;
+package com.github.batenzar.lambda.util;
 
 import java.util.Collections;
 import java.util.EnumSet;

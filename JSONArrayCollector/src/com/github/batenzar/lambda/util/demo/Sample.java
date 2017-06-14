@@ -1,9 +1,10 @@
+package com.github.batenzar.lambda.util.demo;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
 
-import com.github.batenzar.lambdautil.JSONArrayCollector;
+import com.github.batenzar.lambda.util.JSONArrayCollector;
 
 public class Sample {
 
