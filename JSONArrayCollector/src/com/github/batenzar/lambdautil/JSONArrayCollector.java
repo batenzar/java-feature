@@ -21,7 +21,7 @@ public class JSONArrayCollector<T> implements Collector<T, JSONArray, JSONArray>
 	@Override
 	public Supplier<JSONArray> supplier() {
 		System.out.println("supplier");
-		
+
 		// clearly declare as supplier
 		return (Supplier<JSONArray>) (() -> {
 			System.out.println("supplier ==> returning json array");
@@ -29,6 +29,12 @@ public class JSONArrayCollector<T> implements Collector<T, JSONArray, JSONArray>
 		});
 
 		// note: can be written in the simpler form
+		// return (Supplier<JSONArray>) JSONArray::new;
+		// or
+		// return JSONArray::new;
+
+		// note: this can compile with warning but runtime error because
+		// classcastexception
 		// return (Supplier<JSONArray>) new JSONArray();
 	}
 
